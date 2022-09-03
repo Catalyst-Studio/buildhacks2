@@ -10,4 +10,4 @@ RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./app /code/app
 
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+CMD ["app.main", "--host", "0.0.0.0", "--port", "80"]
