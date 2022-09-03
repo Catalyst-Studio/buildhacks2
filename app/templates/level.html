@@ -47,7 +47,7 @@
         editor.setTheme("ace/theme/monokai");
         editor.session.setMode("ace/mode/python");
     </script>
-    <script src="{{ url_for('static', path='/level.js') }}"></script>
+    <script src="{{ url_for('static', path='/level.js').replace('http://', 'https://') }}"></script>
 </div>
 </body>
 </html>
