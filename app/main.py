@@ -142,6 +142,7 @@ async def level(websocket: WebSocket):
                 send = {"type": "good", "message": "Congratulations you have beaten this level!"}
                 send = dumps(send)
                 print(send)
+
                 await websocket.send_text(send)
             else:
                 send = {"type": "bad", "message": "Incorrect, please try again"}

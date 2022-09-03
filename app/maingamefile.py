@@ -1,3 +1,6 @@
+from app.crud import Session
+from app.models import Game
+db = Session()
 def check(level: str, code: str):
     with open(f"app/python-levels/{level}.answer", 'r') as f:
         output = ''.join((line) for line in f)
