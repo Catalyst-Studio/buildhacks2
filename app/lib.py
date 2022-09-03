@@ -11,6 +11,7 @@ num2words = {1: 'One', 2: 'Two', 3: 'Three', 4: 'Four', 5: 'Five', \
 
 
 def n2w(n):
+    n = int(n)
     try:
         print
         num2words[n]
