@@ -1,19 +1,47 @@
-Player1Hand = ['Seven', 'Nine']
-Player1Score = 0
-Player2Hand = ('Three', 'King')
-Player2Score == 0
-CardWeight = ['Ace', 'Two', 'Three' 'Four', 'Five', 'Six', 'Seven', 'Eight', 'Nine', 'Ten', 'Jack','Queen', 'King']
-for card in range(0, 2):
-    for count in range(0, 13):
-        if Player1Hand[card] == CardWeight[count]:
-            Player1Score += count + 1
-        if Player2Hand[card] == CardWeight[count]:
-            Player2Score += count + 1
-
-    if Player1Hand[card] == 'King':
-        if Player2Hand[card] == 'Ace':
-            Player2Score += 13
-    if Player2Hand[cards] == 'King':
-        if Player1Hand[card] = 'Ace':
-            Player1Score =+ 13
-print("Player 1 Score:" Player1Score, "vs", "Player 2 Score:", Player2Score)
+classlist = ["Class 1", "Class 2", "Class 3", "Study Hall", "Lunch", "Hour 4", "Hour 5", "Hour 6", "Hour 7"]
+hour = 14
+minute = 14
+truehour = hour - 8
+mincheck = 50
+x = 0
+y = 0
+index = -1
+hourdecrease = True
+minutedecrease = True
+while hourdecrease:
+    while minutedecrease:
+        if minute - 60 >= 0:
+            hour += 1
+            minute -= 60
+        else: minutedecrease = False
+    if hour > 24:
+      hour -= 24
+    elif hour < 24:
+      hourdecrease = False
+add = truehour * 60
+add == minute + add
+if add >= 50:
+    for y in range(0,add 50)
+        y += 50
+        if y > add:
+            index -= 1
+        index += 1
+if index > 8 or index < 0:
+    print("End of Day")
+    if hour > 11:
+        hour =- 12
+        ampm = "PM"
+    else:
+        ampm = "AM"
+    if hour == 0:
+        hour += 1
+else
+    timeleft = y - add
+    print(classlist[index]," ","Time Left: ",timeleft
+    if hour > 11:
+      hour -= 12
+      ampm = "PM"
+    else:
+      ampm = "AM"
+    if hour = 0
+      hour =+ 1
