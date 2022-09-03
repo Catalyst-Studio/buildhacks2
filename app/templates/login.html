@@ -14,7 +14,7 @@
     </div>
     {% endfor %}
     <form action="/auth/login" method="post">
-        <div class="ms-center" style="padding-block-start: 50px 0">
+        <div class="ms-center" style="padding-block-start: 50px">
             <div class="ms-form-group">
                 <label for="Username" class="right">Username</label>
                 <input name="username" placeholder="Username" id="Username" class="ms-autowidth" required/>
@@ -27,6 +27,7 @@
             <input type="submit" value="Submit" />
         </div>
     </form>
+    <p>Dont have an account yet -> <a href="/auth/signup">sign up</a></p>
 </div>
 </body>
 </html>
