@@ -108,6 +108,11 @@ async def signup(request: Request, username: str = Form("username"), password: s
         return templates.TemplateResponse("signup.html", {"request": request})
 
 
+@app.get(/logout)
+async def logout():
+    responce = RedirectResponse("/signin")
+    responce.delete_cookie("auth-key-for-cc-space")
+    return responce
 
 
 @app.get("/dashboard",)

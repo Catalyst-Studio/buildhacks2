@@ -15,25 +15,29 @@
     {% endfor %}
     <form action="/auth/signup" method="post">
         <div class="ms-center">
-            <div class="ms-form-group">
+            <div class="ms-form-group col">
                 <label for="Name" class="right">Name</label>
                 <input name="Name" placeholder="Name" id="Name" class="ms-autowidth" required/>
             </div>
-            <div class="ms-form-group">
-                <label for="Username" class="right">Username</label>
-                <input name="username" placeholder="Username" id="Username" class="ms-autowidth" required/>
+            <div class="row">
+                <div class="ms-form-group">
+                    <label for="Email" class="right">Email</label>
+                    <input name="email" placeholder="Email" id="Email" class="ms-autowidth" required/>
+                </div>
+                <div class="ms-form-group col">
+                    <label for="Username" class="right">Username</label>
+                    <input name="username" placeholder="Username" id="Username" class="ms-autowidth" required/>
+                </div>
             </div>
-            <div class="ms-form-group">
-                <label for="Email" class="right">Email</label>
-                <input name="email" placeholder="Email" id="Email" class="ms-autowidth" required/>
-            </div>
-            <div class="ms-form-group">
-                <label for="Password">Password</label>
-                <input name="password" type="password" placeholder="Password" id="Password" class="ms-autowidth" required/>
-            </div>
-            <div class="ms-form-group">
-                <label for="cPassword">Confirm Password</label>
-                <input name="cpassword" type="password" placeholder="Confirm Password" id="cPassword" class="ms-autowidth" required/>
+            <div class="row">
+                <div class="ms-form-group">
+                    <label for="Password">Password</label>
+                    <input name="password" type="password" placeholder="Password" id="Password" class="ms-autowidth" required/>
+                </div>
+                <div class="ms-form-group">
+                    <label for="cPassword">Confirm Password</label>
+                    <input name="cpassword" type="password" placeholder="Confirm Password" id="cPassword" class="ms-autowidth" required/>
+                </div>
             </div>
             <input type="submit" value="Submit" />
         </div>
