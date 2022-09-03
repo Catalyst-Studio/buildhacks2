@@ -1,7 +1,8 @@
 from sqlalchemy import create_engine
-from config import DATABASE_URI_USERS
-from models import Base
+from app.config import DATABASE_URI_USERS
 from sqlalchemy.orm import sessionmaker
+
+from app.models import Base
 
 
 engine = create_engine(DATABASE_URI_USERS)

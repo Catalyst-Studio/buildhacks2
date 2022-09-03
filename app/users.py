@@ -1,13 +1,14 @@
 import os, hashlib
-from crud import Session
-from models import User
+from app import crud
 from time import strftime
 from base64 import b64encode
 import random, string
 from validate_email import validate_email as ve
 
+from app.models import User
+
 letters = string.ascii_letters
-db = Session()
+db = crud.Session()
 def get_user(username):
     try:
         userdb = db.query(User).filter(User.username == username).first().__dict__

@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-import maingamefile
+from app import maingamefile, users
 from lib import *
 from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket
 from fastapi.security import OAuth2PasswordRequestForm
@@ -11,11 +11,11 @@ from starlette.middleware.sessions import SessionMiddleware
 from starlette.responses import RedirectResponse, HTMLResponse, PlainTextResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi_login import LoginManager
-import users
-from flash import flash, get_flashed_messages
 from starlette import status as stss
 from pathlib import Path
 from json import dumps
+
+from app.flash import flash, get_flashed_messages
 
 class NotAuthenticatedException(Exception):
     pass
@@ -26,9 +26,7 @@ middleware = [
 
 app = FastAPI(middleware=middleware)
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
-app.mount("/webfonts", StaticFiles(directory="webfonts"), name="webfonts")
-app.mount("/assets", StaticFiles(directory="assets"), name="assets")
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 secret = "sajdnflkajsndkjfnaskdnfsdzcllasdfkjnlsjkdfngbsldfgbsldqwertyuiopasdfghjklzxcvbnmpolikmujnyhbtgvrfcedxwszqa"
 manager = LoginManager(secret, token_url='/auth/token', use_cookie=True, default_expiry=timedelta(hours=72))
 manager.not_authenticated_exception = NotAuthenticatedException
