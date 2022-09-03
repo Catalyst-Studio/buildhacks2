@@ -16,4 +16,4 @@ for card in range(0, 2):
     if Player2Hand[cards] == 'King':
         if Player1Hand[card] = 'Ace':
             Player1Score =+ 13
-print("Player 1 Score: " Player1Score "vs " "Player 2 Score:", Player2Score)
+print("Player 1 Score:" Player1Score, "vs", "Player 2 Score:", Player2Score)
