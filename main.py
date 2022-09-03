@@ -1,2 +1,2 @@
 import app
-app.main()
+app.main

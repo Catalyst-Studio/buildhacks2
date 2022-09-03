@@ -1,10 +1,12 @@
-FROM python:3.10
+FROM python:3.9
+
+RUN mkdir -p /code
 
 WORKDIR /code
 
 COPY ./requirements.txt /code/requirements.txt
 
-RUN pip3 install --upgrade -r requirements.txt
+RUN pip3 install --no-cache-dir --upgrade -r requirements.txt
 
 COPY ./app /code/app
 
