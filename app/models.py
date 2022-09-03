@@ -26,7 +26,7 @@ class User(Base):
 
 class Game(Base):
     __tablename__ = "game"
-    id = Column(String,  primary_key=True, autoincrement=True)
+    id = Column(Integer,  primary_key=True)
     one = Column(String)
     two = Column(String)
     three = Column(String)
