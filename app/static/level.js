@@ -1,7 +1,7 @@
 const base_url = window.location.host;
 const path = window.location.pathname;
 console.log(base_url);
-var ws_url = 'ws://' + base_url + '/level';
+var ws_url = 'wss://' + base_url + '/level';
 console.log(ws_url);
 var ws = new WebSocket(ws_url);
 var editor = ace.edit("editor");
