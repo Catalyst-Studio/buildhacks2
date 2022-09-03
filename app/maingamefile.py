@@ -14,3 +14,7 @@ def addwin(level, user):
     db.query(Game).filter(Game.id == user["gameid"]).update({level: "true"})
     db.commit()
     return True
+
+def getstats(user):
+    data = db.query(Game).filter(Game.id == user["gameid"]).first().__dict__
+    return data

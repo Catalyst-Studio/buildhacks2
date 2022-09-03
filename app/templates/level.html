@@ -12,7 +12,7 @@
         editor.session.setMode("ace/mode/python");
     </script>
     <link rel="stylesheet" href="{{ url_for('static', path='/fontawesome.min.css').replace('http://', 'https://') }}"/>
-    <script src="{{ url_for('static', path='/bundle.js').replace('http://', 'https://') }}"
+    <script src="{{ url_for('static', path='/bundle.js').replace('http://', 'https://') }}"></script>
     <style type="text/css" media="screen">
         #editor {
             position: absolute;
@@ -52,6 +52,8 @@
         editor.session.setMode("ace/mode/python");
     </script>
     <script src="{{ url_for('static', path='/level.js').replace('http://', 'https://') }}"></script>
+    <div class="{{ levelnum }}" id="levelnum"></div>
+    <div class="{{ levelname }}" id="levelname"></div>
 </div>
 </body>
 </html>

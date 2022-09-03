@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-from app import maingamefile, users
+from app import maingamefile, users, lib
 from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
@@ -16,11 +16,14 @@ from json import dumps
 
 from app.flash import flash, get_flashed_messages
 
+
 class NotAuthenticatedException(Exception):
     pass
 
+
 middleware = [
-    Middleware(SessionMiddleware, secret_key="sajdnflkajsndkjfnaskdnfsdzcllasdfkjnlsjkdfngbsldfgbsldqwertyuiopasdfghjklzxcvbnmpolikmujnyhbtgvrfcedxwszqa")
+    Middleware(SessionMiddleware,
+               secret_key="sajdnflkajsndkjfnaskdnfsdzcllasdfkjnlsjkdfngbsldfgbsldqwertyuiopasdfghjklzxcvbnmpolikmujnyhbtgvrfcedxwszqa")
 ]
 
 app = FastAPI(middleware=middleware)
@@ -32,9 +35,11 @@ manager.not_authenticated_exception = NotAuthenticatedException
 manager.cookie_name = "auth-key-for-cc-space"
 templates.env.globals['get_flashed_messages'] = get_flashed_messages
 
+
 @app.exception_handler(StarletteHTTPException)
 async def custom_exception_handler(request: Request, exc: StarletteHTTPException):
-    return templates.TemplateResponse("error.html", {"request": request, "error": str(exc.status_code)}, status_code=exc.status_code)
+    return templates.TemplateResponse("error.html", {"request": request, "error": str(exc.status_code)},
+                                      status_code=exc.status_code)
 
 
 @app.exception_handler(NotAuthenticatedException)
@@ -49,15 +54,18 @@ def auth_exception_handler(request: Request, exc: NotAuthenticatedException):
 async def root():
     return "homepage"
 
+
 @manager.user_loader()
 async def load_user(username: str):
     user = users.get_user(f"{str(username)}")
     print(user)
     return user
 
+
 @app.get("/auth/login")
 async def login(request: Request):
     return templates.TemplateResponse("login.html", {"webname": "login", "request": request})
+
 
 @app.get("/auth/signup", response_class=HTMLResponse)
 async def signup(request: Request):
@@ -66,30 +74,32 @@ async def signup(request: Request):
 
 @app.post("/auth/login")
 async def login(request: Request, data: OAuth2PasswordRequestForm = Depends()):
-        username = data.username
-        password = data.password
-        user = await load_user(username)
-        if not user:
-            flash(request, "The Username or password you have entered is incorrect", "danger")
-            print("not user")
-            return templates.TemplateResponse("login.html", {"request": request})
-        key = users.password(str(password), user)
-        print(user["key"])
-        print(key)
-        if key != user["key"]:
-            flash(request, "The Username or password you have entered is incorrect", "danger")
-            print("incorrect password")
-            return templates.TemplateResponse("login.html", {"request": request})
-        access_token = manager.create_access_token(
-            data={"sub": username}
-        )
-        resp = RedirectResponse(url="/dashboard", status_code=stss.HTTP_302_FOUND)
-        manager.set_cookie(resp, access_token)
-        return resp
+    username = data.username
+    password = data.password
+    user = await load_user(username)
+    if not user:
+        flash(request, "The Username or password you have entered is incorrect", "danger")
+        print("not user")
+        return templates.TemplateResponse("login.html", {"request": request})
+    key = users.password(str(password), user)
+    print(user["key"])
+    print(key)
+    if key != user["key"]:
+        flash(request, "The Username or password you have entered is incorrect", "danger")
+        print("incorrect password")
+        return templates.TemplateResponse("login.html", {"request": request})
+    access_token = manager.create_access_token(
+        data={"sub": username}
+    )
+    resp = RedirectResponse(url="/dashboard", status_code=stss.HTTP_302_FOUND)
+    manager.set_cookie(resp, access_token)
+    return resp
 
 
 @app.post("/auth/signup")
-async def signup(request: Request, username: str = Form("username"), password: str = Form("password"), name: str = Form("name"), email: str = Form("email"), cpassword: str = Form("cpassword"), tos: str = Form("tos"), stnl: str = Form("stnl")):
+async def signup(request: Request, username: str = Form("username"), password: str = Form("password"),
+                 name: str = Form("name"), email: str = Form("email"), cpassword: str = Form("cpassword"),
+                 tos: str = Form("tos"), stnl: str = Form("stnl")):
     if password == cpassword:
         check = users.checkuser(username, password, email)
         if str(check) == "good":
@@ -115,18 +125,32 @@ async def logout():
     return responce
 
 
-@app.get("/dashboard",)
-async def dashboard(request: Request, user = Depends(manager)):
-    return templates.TemplateResponse("dashboard.html", {"webname": "Dashboard", "request": request, "user": user})
+@app.get("/dashboard", )
+async def dashboard(request: Request, user=Depends(manager)):
+    gamestats = maingamefile.getstats(user)
+    return templates.TemplateResponse("dashboard.html", {"webname": "Dashboard", "request": request, "user": user, "stats": gamestats})
+
 
 @app.get("/level/{level}")
-async def level(request: Request,level , user = Depends(manager)):
+async def level(request: Request, level, user=Depends(manager)):
     code = Path(f"app/python-levels/{level}.py").read_text()
     out = code.splitlines()
     output = '\n'.join((line) for line in out)
+    levelname = lib.n2w(n=level).lower()
+    levelnum = level
     print(output)
     message = Path(f"app/python-levels/{level}.message").read_text()
-    return templates.TemplateResponse("level.html", {"webname": f"Level {level}", "request": request, "user": user, "code": code, "message": message, "output": output})
+    return templates.TemplateResponse("level.html",
+                                      {"webname": f"Level {level}",
+                                       "request": request,
+                                       "user": user,
+                                       "code": code,
+                                       "message": message,
+                                       "output": output,
+                                       "levelname": levelname,
+                                       "levelnum": levelnum
+                                       })
+
 
 @app.websocket("/level/{levelname}/{levelnum}")
 async def level(websocket: WebSocket, levelname: str, levelnum: str):
