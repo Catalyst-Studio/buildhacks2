@@ -1,14 +1,14 @@
-x = 20
+x = 3345843
 forever = True
 while forever:
-    if x > 50:
+if int(x) > 50:
         x = x / 2
-    elif x < 50:
+    elif int(x) <= 50:
         x = x * 2
-    if x == 50:
-        forever = False
-    if x > 50:
+    if int(x) == 50
+        forever == False
+    if int(x) > 50:
         x -= 1
-    elif x < 50:
+    elif int(x) < 50:
         x += 1
-print("x = 50")
+print(x
