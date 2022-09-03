@@ -1,7 +1,3 @@
-#while not true
-#=+ instead of +=
-#never ending loop
-#misplaced parenthesis
 x = 1
 while not True:
     x =+ 1

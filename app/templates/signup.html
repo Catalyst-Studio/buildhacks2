@@ -8,6 +8,11 @@
 </head>
 <body style="display: grid; place-items: center; height: 100vh;">
 <div class="container ms-center ms-text-center">
+    {% for message in get_flashed_messages(request) %}
+    <div class="ms-alert">
+        <p>{{ message.message }}</p>
+    </div>
+    {% endfor %}
     <form action="/auth/signup" method="post">
         <div class="ms-center">
             <div class="ms-form-group">

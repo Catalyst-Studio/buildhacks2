@@ -2,5 +2,5 @@
 #Quotes around variable
 x = 1
 y = 2
-if x < y:
-print("X is less than y because the values are ", "x ", "and", "y" )
+if not x < y:
+    print("X is less than y because the values are ", "x ", "and", "y" )
