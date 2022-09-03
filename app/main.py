@@ -1,7 +1,6 @@
 from datetime import timedelta
 
 from app import maingamefile, users
-from lib import *
 from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
@@ -117,11 +116,11 @@ async def dashboard(request: Request, user = Depends(manager)):
 
 @app.get("/level/{level}")
 async def level(request: Request,level , user = Depends(manager)):
-    code = Path(f"python-levels/{level}.py").read_text()
+    code = Path(f"app/python-levels/{level}.py").read_text()
     out = code.splitlines()
     output = '\n'.join((line) for line in out)
     print(output)
-    message = Path(f"python-levels/{level}.message").read_text()
+    message = Path(f"app/python-levels/{level}.message").read_text()
     return templates.TemplateResponse("level.html", {"webname": f"Level {level}", "request": request, "user": user, "code": code, "message": message, "output": output})
 
 @app.websocket(f"/level")
@@ -133,7 +132,7 @@ async def level(websocket: WebSocket):
         complete = False
         while not complete:
             data = await websocket.receive_text()
-            answer = bugcatcher.check(level="1", code=data)
+            answer = maingamefile.check(level="1", code=data)
             if answer:
                 send = {"type": "good", "message": "Congratulations you have beaten this level!"}
                 send = dumps(send)
