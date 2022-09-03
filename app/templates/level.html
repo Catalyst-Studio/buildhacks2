@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ webname }}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@2.0.1/dist/css/minstyle.io.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dark-mode-switcher@0.0.1/dist/dark.min.js"></script>
+    <script src="https://raw.githack.com/ajaxorg/ace-builds/master/src-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+    </script>
+    <link rel="stylesheet" href="{{ url_for('static', path='/fontawesome.min.css') }}"/>
+    <style type="text/css" media="screen">
+        #editor {
+            position: absolute;
+            top: 150px;
+            right: 150px;
+            bottom: 150px;
+            left: 150px;
+        }
+    </style>
+</head>
+<body>
+<div class="container ms-center ms-text-center">
+    <div class="ms-menu">
+        <div class="ms-menu-logo">
+            <img src="https://rawcdn.githack.com/Catalyst-Craft/logos/01f55b545c3892f25040479a884a079fa63a6eed/builderhack2logo.svg" alt="Logo"/>
+        </div>
+        <nav class="ms-menu-link">
+            <input type="checkbox" id="ms-menu-toggle" />
+            <label for="ms-menu-toggle" class="ms-menu-icon"
+            ><i class="fa fa-bars"></i
+            ></label>
+            <ul>
+                <li><a href="/logout">Logout</a></li>
+            </ul>
+        </nav>
+    </div>
+    <p>{{ message }}</p>
+    <p id="message"></p>
+    <div id="editor">{{ output|safe }}</div>
+    <button onclick="guessCode()">Submit Guess</button>
+    <script>
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+    </script>
+    <script src="{{ url_for('static', path='/level.js') }}"></script>
+</div>
+</body>
+</html>

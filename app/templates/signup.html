@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ webname }}</title>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@2.0.1/dist/css/minstyle.io.min.css">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dark-mode-switcher@0.0.1/dist/dark.min.js"></script>
+</head>
+<body style="display: grid; place-items: center; height: 100vh;">
+<div class="container ms-center ms-text-center">
+    <form action="/auth/signup" method="post">
+        <div class="ms-center">
+            <div class="ms-form-group">
+                <label for="Name" class="right">Name</label>
+                <input name="Name" placeholder="Name" id="Name" class="ms-autowidth" required/>
+            </div>
+            <div class="ms-form-group">
+                <label for="Username" class="right">Username</label>
+                <input name="username" placeholder="Username" id="Username" class="ms-autowidth" required/>
+            </div>
+            <div class="ms-form-group">
+                <label for="Email" class="right">Email</label>
+                <input name="email" placeholder="Email" id="Email" class="ms-autowidth" required/>
+            </div>
+            <div class="ms-form-group">
+                <label for="Password">Password</label>
+                <input name="password" type="password" placeholder="Password" id="Password" class="ms-autowidth" required/>
+            </div>
+            <div class="ms-form-group">
+                <label for="cPassword">Confirm Password</label>
+                <input name="cpassword" type="password" placeholder="Confirm Password" id="cPassword" class="ms-autowidth" required/>
+            </div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+</div>
+</body>
+</html>
