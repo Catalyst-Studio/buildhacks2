@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@onehop/client": "^1.3.14"
+  }
+}
