@@ -128,8 +128,8 @@ async def level(request: Request,level , user = Depends(manager)):
     message = Path(f"app/python-levels/{level}.message").read_text()
     return templates.TemplateResponse("level.html", {"webname": f"Level {level}", "request": request, "user": user, "code": code, "message": message, "output": output})
 
-@app.websocket(f"/level")
-async def level(websocket: WebSocket):
+@app.websocket("/level/{levelname}/{levelnum}")
+async def level(websocket: WebSocket, levelname: str, levelnum: str):
     token = websocket.cookies.get('auth-key-for-cc-space')
     user = await manager.get_current_user(token=token)
     if user:
@@ -137,12 +137,12 @@ async def level(websocket: WebSocket):
         complete = False
         while not complete:
             data = await websocket.receive_text()
-            answer = maingamefile.check(level="1", code=data)
+            answer = maingamefile.check(level=levelnum, code=data)
             if answer:
                 send = {"type": "good", "message": "Congratulations you have beaten this level!"}
                 send = dumps(send)
                 print(send)
-
+                maingamefile.addwin(levelname, user)
                 await websocket.send_text(send)
             else:
                 send = {"type": "bad", "message": "Incorrect, please try again"}

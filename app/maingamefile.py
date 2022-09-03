@@ -9,3 +9,8 @@ def check(level: str, code: str):
             return True
         else:
             return False
+
+def addwin(level, user):
+    db.query(Game).filter(Game.id == user["gameid"]).update({level: "true"})
+    db.commit()
+    return True

@@ -5,7 +5,7 @@ from base64 import b64encode
 import random, string
 from validate_email import validate_email as ve
 
-from app.models import User
+from app.models import User, Game
 
 letters = string.ascii_letters
 db = crud.Session()
@@ -28,13 +28,36 @@ def createuser(username, password, name, tos, email):
     print(salt)
     key = hashlib.pbkdf2_hmac('sha256', password.encode(), salt, 100000)
     key = b64encode(key).decode('utf-8')
+    insert2 = Game(
+        one="false",
+        two="false",
+        three="false",
+        four="false",
+        five="false",
+        six="false",
+        seven="false",
+        eight="false",
+        nine="false",
+        ten="false",
+        eleven="false",
+        twelve="false",
+        thirteen="false",
+        fourteen="false",
+        fifteen="false",
+        sixteen="false"
+    )
+    db.add(insert2)
+    db.commit()
+    gameid=insert2.id
+    print(gameid)
     insert = User(
         name=name,
         username=username,
         email=email,
         salt=salt,
         key=key,
-        tos=tos
+        tos=tos,
+        gameid=gameid
     )
     db.add(insert)
     db.commit()
