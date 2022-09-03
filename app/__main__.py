@@ -1,6 +1,6 @@
 from datetime import timedelta
 
-import bugcatcher
+import maingamefile
 from lib import *
 from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket
 from fastapi.security import OAuth2PasswordRequestForm
