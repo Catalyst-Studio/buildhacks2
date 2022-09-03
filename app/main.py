@@ -25,7 +25,7 @@ middleware = [
 ]
 
 app = FastAPI(middleware=middleware)
-templates = Jinja2Templates(directory="templates")
+templates = Jinja2Templates(directory="app/templates")
 app.mount("/static", StaticFiles(directory="app/static"), name="static")
 secret = "sajdnflkajsndkjfnaskdnfsdzcllasdfkjnlsjkdfngbsldfgbsldqwertyuiopasdfghjklzxcvbnmpolikmujnyhbtgvrfcedxwszqa"
 manager = LoginManager(secret, token_url='/auth/token', use_cookie=True, default_expiry=timedelta(hours=72))
