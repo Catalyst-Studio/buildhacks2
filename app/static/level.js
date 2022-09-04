@@ -28,3 +28,27 @@ const guessCode = async () => {
         }
     }
 }
+const fetchurl = 'https://' + base_url + '/api/currentuser';
+const datas = fetch(fetchurl);
+const fulldata = datas.json();
+const username = fulldata.username;
+ws_url = 'wss://' + base_url + '/api/chat';
+var wschat = new WebSocket(ws_url);
+const sendMessage = async () => {
+    const message = document.getElementById("message_send").value;
+    let data = {
+        "sender": username,
+        "message": message
+    };
+    wschat.send(JSON.stringify(data));
+    return false;
+}
+
+wschat.onmessage = function (event) {
+    const data = JSON.parse(event.data);
+    const user = data.username;
+    const message = data.message;
+    const div = document.getElementById("scroll-bar-hidden message-internal");
+    const code = '<p><b>' + user + '</b>: ' + message;
+    div.innerHTML += code;
+};

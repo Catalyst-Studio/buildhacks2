@@ -1,7 +1,7 @@
 from datetime import timedelta
 
-from app import maingamefile, users, lib
-from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket
+from app import maingamefile, users, lib, my_message
+from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket, WebSocketDisconnect
 from fastapi.security import OAuth2PasswordRequestForm
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
@@ -16,7 +16,7 @@ from json import dumps
 
 from app.flash import flash, get_flashed_messages
 
-
+socketmanager = my_message.SocketManager()
 class NotAuthenticatedException(Exception):
     pass
 
@@ -173,3 +173,31 @@ async def level(websocket: WebSocket, levelname: str, levelnum: str):
                 send = dumps(send)
                 print(send)
                 await websocket.send_text(send)
+
+
+@app.websocket("/api/chat")
+async def chat(websocket: WebSocket):
+    token = websocket.cookies.get('auth-key-for-cc-space')
+    user = await manager.get_current_user(token=token)
+    if user:
+        await manager.connect(websocket, user["username"])
+        response = {
+            "sender": user["username"],
+            "message": "got connected"
+        }
+        await manager.broadcast(response)
+        try:
+            while True:
+                data = await websocket.receive_json()
+                await manager.broadcast(data)
+        except WebSocketDisconnect:
+            manager.disconnect(websocket, user["username"])
+            response['message'] = "left"
+            await manager.broadcast(response)
+
+@app.get("/api/currentuser")
+async def getcurrentuser(request: Request):
+    user = request.state.user
+    data = {"username": user["username"]}
+    send = dumps(data)
+    return send

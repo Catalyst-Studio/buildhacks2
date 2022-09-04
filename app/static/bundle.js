@@ -198,9 +198,7 @@ client.on('CONNECTION_STATE_UPDATE', (state) => {
 const channelId = "test";
 client.channels.publishMessage(
     channelId,
-    // event name of your choosing
     "MESSAGE_CREATE",
-    // event data, this can be any object you want it to be
     {
         content: "Hello Hop Channels!",
         author_name: "Vanilla"
