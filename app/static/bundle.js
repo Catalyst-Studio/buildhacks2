@@ -195,8 +195,22 @@ client.on('CONNECTION_STATE_UPDATE', (state) => {
         client.subscribeToChannel("test");
     }
 });
+const channelId = "test";
+client.channels.publishMessage(
+    channelId,
+    // event name of your choosing
+    "MESSAGE_CREATE",
+    // event data, this can be any object you want it to be
+    {
+        content: "Hello Hop Channels!",
+        author_name: "Vanilla"
+    }
+).then(r => console.log(r))
+client.on("MESSAGE", ({event, data}) => console.log(data));
 
-client.on("MESSAGE", ({event, data}) => console.log);
+client.channels.on('stateUpdate', (channelId, state) => {
+    console.log(state)
+});
 },{"@onehop/client":4}],3:[function(require,module,exports){
 'use strict';
 
