@@ -20,9 +20,6 @@ const guessCode = async () => {
             const doc = document.getElementById("message");
             doc.className = "ms-label ms-action2";
             doc.innerText = message;
-            const doc2 = document.getElementById("button");
-            const html = '<button onclick="location.href="' + '/dashboard' + '">Back Home</button>';
-            doc2.innerHTML += html;
             ws.close()
         }
         else if (type === "bad") {
