@@ -5,9 +5,14 @@
     <title>{{ webname }}</title>
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/minstyle.io@2.0.1/dist/css/minstyle.io.min.css">
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/dark-mode-switcher@0.0.1/dist/dark.min.js"></script>
+    <style>
+        .max-width {
+            max-width: 600px;
+        }
+    </style>
 </head>
 <body style="display: grid; place-items: center; height: 100vh;">
-<div class="container ms-center ms-text-center">
+<div class="container ms-center ms-text-center max-width">
     {% for message in get_flashed_messages(request) %}
     <div class="ms-alert">
         <p>{{ message.message }}</p>
@@ -19,27 +24,29 @@
                 <label for="name" class="right">Name</label>
                 <input name="Name" placeholder="Name" id="name" class="ms-autowidth" required/>
             </div>
-            <div class="row">
-                <div class="ms-form-group col m-3">
-                    <label for="email" class="right">Email</label>
-                    <input name="email" placeholder="Email" id="email" class="ms-autowidth" required/>
+            <div class="max-width">
+                <div class="row">
+                    <div class="ms-form-group col m-3">
+                        <label for="email" class="right">Email</label>
+                        <input name="email" placeholder="Email" id="email" class="ms-autowidth" required/>
+                    </div>
+                    <div class="ms-form-group col m-3">
+                        <label for="username" class="right">Username</label>
+                        <input name="username" placeholder="Username" id="username" class="ms-autowidth" required/>
+                    </div>
                 </div>
-                <div class="ms-form-group col m-3">
-                    <label for="username" class="right">Username</label>
-                    <input name="username" placeholder="Username" id="username" class="ms-autowidth" required/>
+                <div class="row">
+                    <div class="ms-form-group col m-3">
+                        <label for="password">Password</label>
+                        <input name="password" type="password" placeholder="Password" id="password" class="ms-autowidth" required/>
+                    </div>
+                    <div class="ms-form-group col m-3">
+                        <label for="cpassword">Confirm Password</label>
+                        <input name="cpassword" type="password" placeholder="Confirm Password" id="cpassword" class="ms-autowidth" required/>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="ms-form-group col m-3">
-                    <label for="password">Password</label>
-                    <input name="password" type="password" placeholder="Password" id="password" class="ms-autowidth" required/>
-                </div>
-                <div class="ms-form-group col m-3">
-                    <label for="cpassword">Confirm Password</label>
-                    <input name="cpassword" type="password" placeholder="Confirm Password" id="cpassword" class="ms-autowidth" required/>
-                </div>
-            </div>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Sign up" />
         </div>
     </form>
     <P>Already have an account -> <a href="/auth/login">Login</a></P>

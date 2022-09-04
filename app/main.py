@@ -123,7 +123,7 @@ async def signup(request: Request, username: str = Form("username"), password: s
 
 @app.get("/logout")
 async def logout():
-    responce = RedirectResponse("/signin")
+    responce = RedirectResponse("/auth/login")
     responce.delete_cookie("auth-key-for-cc-space")
     return responce
 
