@@ -12,7 +12,6 @@
         editor.session.setMode("ace/mode/python");
     </script>
     <link rel="stylesheet" href="{{ url_for('static', path='/fontawesome.min.css').replace('http://', 'https://') }}"/>
-    <script src="{{ url_for('static', path='/bundle.js').replace('http://', 'https://') }}"></script>
     <style type="text/css" media="screen">
         #editor {
             position: absolute;
@@ -72,7 +71,7 @@
         <div class="ms-form-group ms-text-left ms-posision-absolute-bottom">
             <form onsubmit="return sendMessage()">
                 <input name="message" placeholder="Message" id="message_send" class="ms-autowidth" required/>
-                <button type="submit">Send</button>
+                <button type="submit" value="Submit">Send</button>
             </form>
         </div>
     </div>
