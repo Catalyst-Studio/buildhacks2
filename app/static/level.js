@@ -29,7 +29,7 @@ const guessCode = async () => {
     }
 }
 const fetchurl = 'https://' + base_url + '/api/currentuser';
-const datas = fetch(fetchurl);
+const datas = fetch(fetchurl, {credentials: "same-origin"});
 const fulldata = JSON.parse(datas);
 const username = fulldata.username;
 ws_url = 'wss://' + base_url + '/api/chat';
