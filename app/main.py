@@ -182,6 +182,7 @@ async def level(websocket: WebSocket, levelname: str, levelnum: str):
 async def chat(websocket: WebSocket):
     token = websocket.cookies.get('auth-key-for-cc-space')
     user = await manager.get_current_user(token=token)
+    print(user["username"])
     if user:
         username = user["username"]
         await socketmanager.connect(websocket, user["username"])
