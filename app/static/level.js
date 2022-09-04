@@ -29,7 +29,8 @@ const guessCode = async () => {
     }
 }
 const fetchurl = 'https://' + base_url + '/api/currentuser';
-const datas = fetch(fetchurl);
+let datas = fetch(fetchurl);
+datas = datas.replace("/", "")
 const fulldata = JSON.parse(datas);
 const username = fulldata.username;
 ws_url = 'wss://' + base_url + '/api/chat';

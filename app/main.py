@@ -201,4 +201,5 @@ async def getcurrentuser(request: Request):
     user = request.state.user
     data = {"username": user["username"]}
     send = dumps(data)
-    return send
+    print(send)
+    return str(send)
