@@ -69,9 +69,9 @@
 
         </div>
         <div class="ms-form-group ms-text-left ms-posision-absolute-bottom">
-            <form onsubmit="return sendMessage()">
+            <form onsubmit="return false">
                 <input name="message" placeholder="Message" id="message_send" class="ms-autowidth" required/>
-                <button type="submit" value="Submit">Send</button>
+                <button type="submit" onclick="sendMessage()">Send</button>
             </form>
         </div>
     </div>
