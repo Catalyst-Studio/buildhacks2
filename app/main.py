@@ -192,16 +192,12 @@ async def chat(websocket: WebSocket):
         try:
             while True:
                 data = await websocket.receive_json()
+                data = {
+                    "sender": user["username"],
+                    "message": data["message"]
+                }
                 await socketmanager.broadcast(data)
         except WebSocketDisconnect:
             socketmanager.disconnect(websocket, user["username"])
             response['message'] = "left"
             await socketmanager.broadcast(response)
-
-@app.get("/api/currentuser")
-async def getcurrentuser(request: Request):
-    user = request.state.user
-    data = {"username": user["username"]}
-    send = jsonable_encoder(data)
-    print(send)
-    return JSONResponse(content=send)

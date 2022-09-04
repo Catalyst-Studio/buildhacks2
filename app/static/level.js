@@ -28,18 +28,12 @@ const guessCode = async () => {
         }
     }
 }
-const fetchurl = 'https://' + base_url + '/api/currentuser';
-const datas = fetch(fetchurl, {credentials: "same-origin"});
-console.log(datas)
-const fulldata = datas.json();
-const username = fulldata.username;
 ws_url = 'wss://' + base_url + '/api/chat';
 var wschat = new WebSocket(ws_url);
 
 function sendMessage() {
     const message = document.getElementById("message_send").value;
     let data = {
-        "sender": username,
         "message": message
     };
     wschat.send(JSON.stringify(data));
