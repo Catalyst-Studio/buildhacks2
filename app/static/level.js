@@ -3,6 +3,7 @@ const path = window.location.pathname;
 console.log(base_url);
 const levelname = document.getElementById("levelname").className
 const levelnum = document.getElementById("levelnum").className
+const username = document.getElementById("username").className;
 var ws_url = 'wss://' + base_url + '/level/' + levelname + '/' + levelnum;
 console.log(ws_url);
 var ws = new WebSocket(ws_url);
@@ -28,12 +29,12 @@ const guessCode = async () => {
         }
     }
 }
-ws_url = 'wss://' + base_url + '/api/chat';
+ws_url = 'wss://' + base_url + '/api/chat/' + username;
 var wschat = new WebSocket(ws_url);
-
 function sendMessage() {
     const message = document.getElementById("message_send");
     let data = {
+        "username": username,
         "message": message.value
     };
     message.value = ""

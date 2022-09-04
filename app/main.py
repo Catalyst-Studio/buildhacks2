@@ -178,14 +178,14 @@ async def level(websocket: WebSocket, levelname: str, levelnum: str):
                 await websocket.send_text(send)
 
 
-@app.websocket("/api/chat")
-async def chat(websocket: WebSocket):
+@app.websocket("/api/chat/{username}")
+async def chat(websocket: WebSocket, username: str):
     token = websocket.cookies.get('auth-key-for-cc-space')
     print(token)
     user = await manager.get_current_user(token=token)
     print(user)
     if user:
-        username = user["username"]
+        username = username
         await socketmanager.connect(websocket, username)
         response = {
             "sender": username,
