@@ -1,5 +1,7 @@
 from datetime import timedelta
 
+from fastapi.encoders import jsonable_encoder
+
 from app import maingamefile, users, lib, my_message
 from fastapi import FastAPI, Request, Response, Depends, Form, WebSocket, WebSocketDisconnect
 from fastapi.security import OAuth2PasswordRequestForm
@@ -7,7 +9,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from starlette.middleware import Middleware
 from starlette.middleware.sessions import SessionMiddleware
-from starlette.responses import RedirectResponse, HTMLResponse, PlainTextResponse
+from starlette.responses import RedirectResponse, HTMLResponse, PlainTextResponse, JSONResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from fastapi_login import LoginManager
 from starlette import status as stss
@@ -200,6 +202,6 @@ async def chat(websocket: WebSocket):
 async def getcurrentuser(request: Request):
     user = request.state.user
     data = {"username": user["username"]}
-    send = dumps(data)
+    send = jsonable_encoder(data)
     print(send)
-    return str(send)
+    return JSONResponse(content=send)
