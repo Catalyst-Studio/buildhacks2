@@ -102,7 +102,7 @@ async def login(request: Request, data: OAuth2PasswordRequestForm = Depends()):
 @app.post("/auth/signup")
 async def signup(request: Request, username: str = Form("username"), password: str = Form("password"),
                  name: str = Form("name"), email: str = Form("email"), cpassword: str = Form("cpassword"),
-                 tos: str = Form("tos"), stnl: str = Form("stnl")):
+                 tos: str = Form("tos")):
     if password == cpassword:
         check = users.checkuser(username, password, email)
         if str(check) == "good":
