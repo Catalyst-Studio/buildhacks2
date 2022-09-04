@@ -44,7 +44,7 @@
 <div class="container ms-center ms-text-center">
     <div class="ms-menu">
         <div class="ms-menu-logo">
-            <img src="https://rawcdn.githack.com/Catalyst-Craft/logos/01f55b545c3892f25040479a884a079fa63a6eed/builderhack2logo.svg" alt="Logo"/>
+            <a href="/"><img src="https://rawcdn.githack.com/Catalyst-Craft/logos/01f55b545c3892f25040479a884a079fa63a6eed/builderhack2logo.svg" alt="Logo"/></a>
         </div>
         <nav class="ms-menu-link">
             <input type="checkbox" id="ms-menu-toggle" />
@@ -57,8 +57,9 @@
         </nav>
     </div>
     <div class="row">
-        <p>{{ message }}</p>
-        <p id="message"></p>
+        <p class="col">{{ message }}</p>
+        <p id="message" class="col"></p>
+        <div class="col" id="button"></div>
     </div>
     <div id="editor">{{ output|safe }}</div>
     <button onclick="guessCode()">Submit Guess</button>
