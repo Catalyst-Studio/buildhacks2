@@ -47,4 +47,5 @@ wschat.onmessage = function (event) {
     const div = document.getElementById("scroll-bar-hidden");
     const code = '<p><b>' + user + '</b>: ' + message;
     div.innerHTML += code;
+    div.scrollTop = div.scrollHeight;
 };
