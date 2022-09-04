@@ -183,7 +183,7 @@ async def chat(websocket: WebSocket):
     token = websocket.cookies.get('auth-key-for-cc-space')
     user = await manager.get_current_user(token=token)
     if user:
-        print(user["username"])
+        username = user["username"]
         await socketmanager.connect(websocket, user["username"])
         response = {
             "sender": user["username"],
@@ -194,7 +194,7 @@ async def chat(websocket: WebSocket):
             while True:
                 data = await websocket.receive_json()
                 data = {
-                    "sender": user["username"],
+                    "sender": username,
                     "message": data["message"]
                 }
                 await socketmanager.broadcast(data)
