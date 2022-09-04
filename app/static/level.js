@@ -34,6 +34,7 @@ const fulldata = JSON.parse(datas);
 const username = fulldata.username;
 ws_url = 'wss://' + base_url + '/api/chat';
 var wschat = new WebSocket(ws_url);
+
 const sendMessage = async () => {
     const message = document.getElementById("message_send").value;
     let data = {
@@ -41,7 +42,6 @@ const sendMessage = async () => {
         "message": message
     };
     wschat.send(JSON.stringify(data));
-    return false;
 }
 
 wschat.onmessage = function (event) {
