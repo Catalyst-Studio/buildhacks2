@@ -186,9 +186,9 @@ async def chat(websocket: WebSocket):
     print(user)
     if user:
         username = user["username"]
-        await socketmanager.connect(websocket, user["username"])
+        await socketmanager.connect(websocket, username)
         response = {
-            "sender": user["username"],
+            "sender": username,
             "message": "got connected"
         }
         await socketmanager.broadcast(response)
@@ -201,6 +201,6 @@ async def chat(websocket: WebSocket):
                 }
                 await socketmanager.broadcast(data)
         except WebSocketDisconnect:
-            socketmanager.disconnect(websocket, user["username"])
+            socketmanager.disconnect(websocket, username)
             response['message'] = "left"
             await socketmanager.broadcast(response)
