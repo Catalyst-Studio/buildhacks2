@@ -181,6 +181,7 @@ async def level(websocket: WebSocket, levelname: str, levelnum: str):
 @app.websocket("/api/chat")
 async def chat(websocket: WebSocket):
     token = websocket.cookies.get('auth-key-for-cc-space')
+    print(token)
     user = await manager.get_current_user(token=token)
     print(user)
     if user:
