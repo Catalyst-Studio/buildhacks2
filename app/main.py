@@ -181,20 +181,20 @@ async def chat(websocket: WebSocket):
     token = websocket.cookies.get('auth-key-for-cc-space')
     user = await manager.get_current_user(token=token)
     if user:
-        await manager.connect(websocket, user["username"])
+        await socketmanager.connect(websocket, user["username"])
         response = {
             "sender": user["username"],
             "message": "got connected"
         }
-        await manager.broadcast(response)
+        await socketmanager.broadcast(response)
         try:
             while True:
                 data = await websocket.receive_json()
-                await manager.broadcast(data)
+                await socketmanager.broadcast(data)
         except WebSocketDisconnect:
-            manager.disconnect(websocket, user["username"])
+            socketmanager.disconnect(websocket, user["username"])
             response['message'] = "left"
-            await manager.broadcast(response)
+            await socketmanager.broadcast(response)
 
 @app.get("/api/currentuser")
 async def getcurrentuser(request: Request):
