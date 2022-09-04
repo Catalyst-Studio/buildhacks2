@@ -32,10 +32,11 @@ ws_url = 'wss://' + base_url + '/api/chat';
 var wschat = new WebSocket(ws_url);
 
 function sendMessage() {
-    const message = document.getElementById("message_send").value;
+    const message = document.getElementById("message_send");
     let data = {
-        "message": message
+        "message": message.value
     };
+    message.value = ""
     wschat.send(JSON.stringify(data));
 }
 
@@ -43,7 +44,7 @@ wschat.onmessage = function (event) {
     const data = JSON.parse(event.data);
     const user = data.username;
     const message = data.message;
-    const div = document.getElementById("scroll-bar-hidden message-internal");
+    const div = document.getElementById("scroll-bar-hidden");
     const code = '<p><b>' + user + '</b>: ' + message;
     div.innerHTML += code;
 };
