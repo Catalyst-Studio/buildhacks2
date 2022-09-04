@@ -195,10 +195,6 @@ async def chat(websocket: WebSocket, username: str):
         try:
             while True:
                 data = await websocket.receive_json()
-                data = {
-                    "sender": username,
-                    "message": data["message"]
-                }
                 await socketmanager.broadcast(data)
         except WebSocketDisconnect:
             socketmanager.disconnect(websocket, username)
