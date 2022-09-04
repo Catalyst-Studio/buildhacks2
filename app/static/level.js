@@ -3,7 +3,7 @@ const path = window.location.pathname;
 console.log(base_url);
 const levelname = document.getElementById("levelname").className
 const levelnum = document.getElementById("levelnum").className
-var ws_url = 'wss://' + base_url + '/' + levelname + '/' + levelnum;
+var ws_url = 'wss://' + base_url + '/level' + levelname + '/' + levelnum;
 console.log(ws_url);
 var ws = new WebSocket(ws_url);
 var editor = ace.edit("editor");

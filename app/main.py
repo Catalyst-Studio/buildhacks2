@@ -34,6 +34,7 @@ manager = LoginManager(secret, token_url='/auth/token', use_cookie=True, default
 manager.not_authenticated_exception = NotAuthenticatedException
 manager.cookie_name = "auth-key-for-cc-space"
 templates.env.globals['get_flashed_messages'] = get_flashed_messages
+manager.useRequest(app)
 
 
 @app.exception_handler(StarletteHTTPException)
