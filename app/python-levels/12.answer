@@ -1,1 +1,23 @@
-['3:30', '4:00', '4:30', '5:00', '5:30', '6:00', '6:30', '7:00', '7:30']
+traintime1 = "3:30"
+traintime2 = "4:00"
+traintime3 = "4:30"
+traintime4 = "5:00"
+traintime5 = "5:30"
+traintime6 = "6:00"
+traintime7 = "6:30"
+traintime8 = "7:00"
+traintime9 = "7:30"
+trainschedule = []
+trainschedule.append(traintime1)
+trainschedule.append(traintime2)
+trainschedule.append(traintime3)
+trainschedule.append(traintime4)
+trainschedule.append(traintime5)
+trainschedule.append(traintime6)
+trainschedule.append(traintime7)
+trainschedule.append(traintime8)
+trainschedule.append(traintime9)
+printer = []
+for i in range(0, 9):
+    printer.append(trainschedule[i])
+print(printer)

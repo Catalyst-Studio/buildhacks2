@@ -1,1 +1,7 @@
-20
+def number():
+  output = "one"
+  if type(output) == str:
+    output = 125
+    output = output - 5 / 6
+    return output
+print(number())

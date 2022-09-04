@@ -3,5 +3,5 @@ secondnumber = 3
 thirdnumber = 4
 
 x == firstnumber + secondnumber * thirdnumber
-if x == 20:
+if x == 14:
     print("correct variable")
