@@ -1,5 +1,3 @@
-#Intent error
-#Quotes around variable
 x = 1
 y = 2
 if not x < y:

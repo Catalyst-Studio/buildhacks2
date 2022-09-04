@@ -5,6 +5,6 @@ def check_leap_year(year):
         return str(year) + " is not a leap year.
 
 
-str(year_to_check) = 2022
+year_to_check = 2022
 returned_value == check_leap_year(year_to_check)
 print(returnedvalue)

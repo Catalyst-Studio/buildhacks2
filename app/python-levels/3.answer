@@ -1,1 +1,6 @@
-correct
+firstnumber = 12
+secondnumber = 5
+thirdnumber = 2
+answer = (firstnumber * secondnumber) / thirdnumber
+if answer == 30:
+    print("correct")

@@ -1,1 +1,4 @@
-3
+x = 3
+for i in range(0, x):
+    if i == 2:
+        print(i)

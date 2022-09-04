@@ -1,1 +1,8 @@
-2
+x = 1
+while True:
+    x += 1
+    i = 1
+    if x == 2:
+        i += 1
+        if i == 2:
+            print(x)

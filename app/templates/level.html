@@ -38,6 +38,8 @@
     </style>
 </head>
 <body>
+<div class="{{ levelnum }}" id="levelnum"></div>
+<div class="{{ levelname }}" id="levelname"></div>
 <div class="container ms-center ms-text-center">
     <div class="ms-menu">
         <div class="ms-menu-logo">
@@ -68,6 +70,7 @@
         <div class="ms-posision-absolute ms-text-left" style="height: 85%; width: 90%; margin: 0; overflow-y: auto;" id="scroll-bar-hidden message-internal">
 
         </div>
+        <script src="{{ url_for('static', path='/level.js').replace('http://', 'https://') }}"></script>
         <div class="ms-form-group ms-text-left ms-posision-absolute-bottom">
             <form onsubmit="return false">
                 <input name="message" placeholder="Message" id="message_send" class="ms-autowidth" required/>
@@ -75,9 +78,6 @@
             </form>
         </div>
     </div>
-    <div class="{{ levelnum }}" id="levelnum"></div>
-    <div class="{{ levelname }}" id="levelname"></div>
-    <script src="{{ url_for('static', path='/level.js').replace('http://', 'https://') }}"></script>
 </div>
 </body>
 </html>

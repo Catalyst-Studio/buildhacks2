@@ -1,0 +1,1 @@
+The conditional isn't comparing anything, the range is going down, and the variable x resets.
