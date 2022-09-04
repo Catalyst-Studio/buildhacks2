@@ -54,8 +54,8 @@ def auth_exception_handler(request: Request, exc: NotAuthenticatedException):
 
 
 @app.get("/")
-async def root():
-    return "homepage"
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
 
 
 @manager.user_loader()
